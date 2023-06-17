@@ -25,7 +25,7 @@ class _OneThirdScreenState extends State<OneThirdScreen> {
                     'assets/images/Connect With Other Plant Lovers.jpg'),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(right: 10, left: 10),
                 child: Container(
                     height: 9.h,
                     width: 70.w,
@@ -39,7 +39,26 @@ class _OneThirdScreenState extends State<OneThirdScreen> {
               ),
               Container(
                 height: 5.h,
-                width: 50.w,
+                width: 70.w,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.offAndToNamed('/loginadmin');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color(0XFF557A59),
+                    ),
+                  ),
+                  child: Text(
+                    "Want to Sell Product?",
+                    style: TextStyle(fontSize: 15.sp),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5,),
+              Container(
+                height: 5.h,
+                width: 70.w,
                 child: ElevatedButton(
                   onPressed: () {
                     Get.offAndToNamed('/signin');
@@ -50,14 +69,12 @@ class _OneThirdScreenState extends State<OneThirdScreen> {
                     ),
                   ),
                   child: Text(
-                    "Create Account",
+                    "Want to Buy Product?",
                     style: TextStyle(fontSize: 15.sp),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 5.h,
-              )
+              SizedBox(height: 10,),
             ],
           ),
         ),

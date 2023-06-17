@@ -141,15 +141,15 @@ class _AddScreenState extends State<AddScreen> {
               TextFormField(
                 controller: txtimage,
                 cursorColor: Colors.blueGrey.shade800,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.url,
                 decoration: Box(hint: "Enter Plant ImageUrl"),
               ),
               SizedBox(
                 height: 5,
               ),
-              (txtimage.text != null)
-                  ? Image.network('${txtimage.text}')
-                  : Image.asset('assets/images/picture.jpg'),
+              (txtimage.text == null)
+                  ? Text("Not Available")
+                  : Image.network('${txtimage.text}'),
               SizedBox(
                 height: 10,
               ),

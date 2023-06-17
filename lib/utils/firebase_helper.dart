@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
@@ -77,8 +78,47 @@ class FbHelper {
       "discription": discription
     });
   }
+
   void addtoCart({name, image, price, discription}) {
-    firestore.collection("cart").add({
+    User? user = firebaseAuth.currentUser;
+    String uid = user!.uid;
+    firestore.collection("usercart").doc(uid).collection("cart").add({
+      "name": name,
+      "image": image,
+      "price": price,
+      "discription": discription
+    });
+  }
+  void addtoBuy(m1) {
+    User? user = firebaseAuth.currentUser;
+    String uid = user!.uid;
+    firestore.collection("usercart").doc(uid).collection("Buy").add({
+      "name": "${m1['name']}",
+      "image": "${m1['image']}",
+      "price": "${m1['price']}",
+      "discription": "${m1['discription']}"
+    });
+  }
+
+  void addUserDetails({name, mobile, add}) {
+    User? user = firebaseAuth.currentUser;
+    String uid = user!.uid;
+    firestore.collection("userdetails").doc(uid).collection('data').add({
+      "name": name,
+      "mobile": mobile,
+      "address": add,
+    });
+  }
+
+  void addAdminDetails({name, mobile, add, gst}) {
+
+    firestore
+        .collection("admindetails")
+        .add({"name": name, "mobile": mobile, "address": add, "GST": gst});
+  }
+
+  void orderDetails({name, image, price, discription}) {
+    firestore.collection("order").add({
       "name": name,
       "image": image,
       "price": price,
@@ -91,13 +131,20 @@ class FbHelper {
     var uid = user!.uid;
     return firestore.collection('Products').snapshots();
   }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> readCartProduct() {
     User? user = firebaseAuth.currentUser;
     var uid = user!.uid;
-    return firestore.collection('cart').snapshots();
+    return firestore.collection("usercart").doc(uid).collection('cart').snapshots();
+  }
+  Stream<QuerySnapshot<Map<String, dynamic>>> readBuyProduct() {
+    User? user = firebaseAuth.currentUser;
+    var uid = user!.uid;
+    return firestore.collection("usercart").doc(uid).collection('Buy').snapshots();
   }
 
   Future<void> deleteData(String key) async {
+    // await firestore.collection('Products').orderBy(field).doc(key).delete();
     await firestore.collection('Products').doc(key).delete();
   }
 
@@ -133,7 +180,9 @@ class FbHelper {
       }
     });
   }
+
   Future<void> signOut() async {
-    await firebaseAuth.signOut().then((value) => Get.offAndToNamed('/'));
+    await GoogleSignIn().signOut();
+    await firebaseAuth.signOut();
   }
 }

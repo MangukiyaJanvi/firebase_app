@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../main.dart';
 import '../../../utils/firebase_helper.dart';
 import '../../admin/menuscreen/model/menu_model.dart';
@@ -17,6 +16,12 @@ class UserHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<UserHomeScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    FbHelper.fbHelper.getemial();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,6 +53,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ],
         ),
         drawer: Drawer(
+          backgroundColor: Colors.lightGreen.shade50,
           child: Column(
             children: [
               Container(
@@ -83,9 +89,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 ),
               ),
               Container(
+                height: 71.h,
                 width: double.infinity,
-                color: Colors.lightGreen.shade50,
-                child: Column(
+                child: ListView(
                   children: [
                     Box(Icons.home, "Home"),
                     Box(Icons.notifications, "Notifications"),
@@ -94,13 +100,16 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     Box(Icons.info, "Info"),
                     Box(Icons.settings, "Settings"),
                     InkWell(onTap: () {
-                      FbHelper.fbHelper.signOut();
-                    },child: Box(Icons.logout, "LogOut")),
+                      Get.toNamed('/order');
+                    },child: Box(Icons.shopping_cart_outlined, "Orders")),
+                    InkWell(
+                        onTap: () async {
+                         await FbHelper.fbHelper.signOut();
+                         Get.offAllNamed('/');
+                        },
+                        child: Box(Icons.logout, "LogOut")),
                     Box(Icons.help, "Help"),
                     ListTile(
-                      onTap: () {
-                        Get.offAllNamed('/');
-                      },
                       leading: Container(
                         width: 8.w,
                         child: Image.asset('assets/images/admin.png'),
@@ -116,9 +125,6 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                       title: Text('User Side'),
                       trailing: Icon(Icons.navigate_next),
                     ),
-                    Container(
-                      height: 5.h,
-                    )
                   ],
                 ),
               ),
@@ -148,164 +154,159 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     discription: discription);
                 list.add(m1);
               }
-              return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    Padding(
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset("assets/images/Banner.png"),
                     ),
-                    SizedBox(
-                      height: 35.h,
-                      child: Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => InkWell(
-                            onTap: () {
-                              Get.toNamed('/data', arguments: index);
-                            },
-                            child: Container(
-                              height: 50.h,
-                              width: 45.w,
-                              margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      topLeft: Radius.circular(10),
-                                    ),
-                                    child: SizedBox(
-                                      height: 15.h,
-                                      width: double.infinity,
-                                      child: Image.network(
-                                        "${list[index].image}",
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "\n${list[index].name}",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14.sp),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        BoxRate(),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          "From ₹${list[index].price}",
-                                          style: TextStyle(
-                                              color: Color(0XFF519453),
-                                              fontSize: 13.sp),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          itemCount: list.length,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 100.h,
-                      child: GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.6,
-                            crossAxisSpacing: 0.6),
-                        itemBuilder: (context, index) => GestureDetector(
+                  ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 250,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) => InkWell(
                           onTap: () {
                             Get.toNamed('/data', arguments: index);
                           },
-                          child: InkWell(
-                            onTap: () {
-                              Get.toNamed('/data', arguments: index);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      topLeft: Radius.circular(10),
+                          child: Container(
+                            height: 50.h,
+                            width: 45.w,
+                            margin: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10),
+                                  ),
+                                  child: SizedBox(
+                                    height: 15.h,
+                                    width: double.infinity,
+                                    child: Image.network(
+                                      "${list[index].image}",
+                                      fit: BoxFit.fill,
                                     ),
-                                    child: SizedBox(
-                                      height: 20.h,
-                                      width: double.infinity,
-                                      child: Image.network(
-                                        "${list[index].image}",
-                                        fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "\n${list[index].name}",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.sp),
                                       ),
-                                    ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      BoxRate(),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Text(
+                                        "From ₹${list[index].price}",
+                                        style: TextStyle(
+                                            color: Color(0XFF519453),
+                                            fontSize: 13.sp),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, right: 5),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "\n${list[index].name}",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14.sp),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        BoxRate(),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          "From ₹${list[index].price}",
-                                          style: TextStyle(
-                                              color: Color(0XFF519453),
-                                              fontSize: 13.sp),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                         itemCount: list.length,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  SliverGrid(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, childAspectRatio: 0.6),
+                    delegate: SliverChildBuilderDelegate(
+                        (context, index) => GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/data', arguments: index);
+                              },
+                              child: InkWell(
+                                onTap: () {
+                                  Get.toNamed('/data', arguments: index);
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(10),
+                                          topLeft: Radius.circular(10),
+                                        ),
+                                        child: SizedBox(
+                                          height: 20.h,
+                                          width: double.infinity,
+                                          child: Image.network(
+                                            "${list[index].image}",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 5, right: 5),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "\n${list[index].name}",
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.sp),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            BoxRate(),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                              "From ₹${list[index].price}",
+                                              style: TextStyle(
+                                                  color: Color(0XFF519453),
+                                                  fontSize: 13.sp),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                        childCount: list.length),
+                  ),
+                ],
               );
             }
             return Center(

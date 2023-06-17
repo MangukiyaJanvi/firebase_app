@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 5,
                     ),
                     Text(
-                      (FbHelper.fbHelper.name == null)
+                      (FbHelper.fbHelper.name != null)
                           ? "${FbHelper.fbHelper.name}"
                           : "Janvi Mangukiya",
                       style: TextStyle(
@@ -100,8 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Box(Icons.info, "Info"),
                       Box(Icons.settings, "Settings"),
                       InkWell(
-                          onTap: () {
-                            FbHelper.fbHelper.signOut();
+                          onTap: () async {
+                           await FbHelper.fbHelper.signOut();
+                            Get.offAndToNamed('/');
                           },
                           child: Box(Icons.logout, "LogOut")),
                       Box(Icons.help, "Help"),
@@ -114,9 +115,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         trailing: Icon(Icons.navigate_next),
                       ),
                       ListTile(
-                        onTap: () {
-                          Get.offAllNamed('/usersplash');
-                        },
                         leading: Container(
                           width: 8.w,
                           child: Image.asset('assets/images/people.png'),

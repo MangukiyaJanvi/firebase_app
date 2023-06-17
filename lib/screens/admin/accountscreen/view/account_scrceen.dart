@@ -68,7 +68,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        (FbHelper.fbHelper.name==null)?"${FbHelper.fbHelper.name}":"Janvi Mangukiya",
+                        (FbHelper.fbHelper.name!=null)?"${FbHelper.fbHelper.name}":"Janvi Mangukiya",
                         style: TextStyle(
                             fontSize: 14.sp, fontWeight: FontWeight.bold),
                       ),

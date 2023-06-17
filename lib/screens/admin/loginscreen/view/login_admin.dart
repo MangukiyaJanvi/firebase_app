@@ -1,26 +1,23 @@
 import 'package:firebase_app/utils/firebase_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sign_button/constants.dart';
-import 'package:sign_button/create_button.dart';
 import 'package:sizer/sizer.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class LoginAdminAcreen extends StatefulWidget {
+  const LoginAdminAcreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<LoginAdminAcreen> createState() => _LoginAdminAcreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _LoginAdminAcreenState extends State<LoginAdminAcreen> {
   TextEditingController txtemail = TextEditingController();
   TextEditingController txtpassword = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
         body: Stack(
           children: [
             Positioned(
@@ -115,13 +112,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         String msg = await FbHelper.fbHelper.signIn(
                             email: txtemail.text, password: txtpassword.text);
                         if (msg == "Success") {
-                          if(txtemail.text!='admin123@gmail.com')
-                          {
-                            Get.offAndToNamed('/detail');
-                          }
-                          else
+                          if(txtemail.text=='admin123@gmail.com')
                             {
-                              Get.snackbar("Warning", "Not allowed to login with this account");
+                              Get.offAndToNamed('/adminDetail');
                             }
                         }
                       },
@@ -142,39 +135,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                        Get.toNamed('/signup');
-                      },
-                      child: Text(
-                        "Create a New Account?",
-                        style:
-                            TextStyle(color: Colors.white70, fontSize: 18.sp),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                    child: SignInButton(
-                      buttonType: ButtonType.google,
-                      onPressed: () async {
-                        String? msg =
-                            await FbHelper.fbHelper.signInWithGoogle();
-                        if (msg == "Success") {
-                          Get.offAndToNamed('/detail');
-                        }
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
                   ),
                 ],
               ),

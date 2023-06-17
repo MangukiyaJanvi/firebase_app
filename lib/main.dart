@@ -7,11 +7,15 @@ import 'package:firebase_app/screens/admin/loginscreen/view/signup_screen.dart';
 import 'package:firebase_app/screens/admin/menuscreen/model/menu_model.dart';
 import 'package:firebase_app/screens/admin/menuscreen/view/data_screen.dart';
 import 'package:firebase_app/screens/admin/menuscreen/view/menu_screen.dart';
+import 'package:firebase_app/screens/admin/onetimescreen/view/admin_detail.dart';
+import 'package:firebase_app/screens/admin/onetimescreen/view/deatails_screen.dart';
 import 'package:firebase_app/screens/admin/onetimescreen/view/one_time_one.dart';
 import 'package:firebase_app/screens/admin/onetimescreen/view/one_time_third.dart';
 import 'package:firebase_app/screens/admin/onetimescreen/view/ont_time_second.dart';
 import 'package:firebase_app/screens/user/cartscreen/model/cart_model.dart';
 import 'package:firebase_app/screens/user/cartscreen/view/cart_screen.dart';
+import 'package:firebase_app/screens/user/oredrscreen/model/oreder_model.dart';
+import 'package:firebase_app/screens/user/oredrscreen/view/check_out_screen.dart';
 import 'package:firebase_app/screens/user/splashscreen/user_splash.dart';
 import 'package:firebase_app/screens/user/userscreen/user_home_screen.dart';
 import 'package:firebase_app/utils/notification_service.dart';
@@ -19,10 +23,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'screens/admin/loginscreen/view/login_admin.dart';
 import 'screens/admin/splashscreen/view/splash_screen.dart';
 
 List<MenuModel> list = [];
 List<CartModel> cartList = [];
+List<OrderModel> orderList = [];
 List listComment = [
   "''Atlantis collection is excellent. Will recommend''",
   "''Plant is growing happily and I can see new leaves popping out.''",
@@ -47,6 +53,10 @@ Future<void> main() async {
             page: () => UserSplashScreen(),
           ),
           GetPage(
+              name: '/order',
+              page: () => CheckOutScreen(),
+              curve: Curves.bounceOut),
+          GetPage(
             name: '/one',
             page: () => OneScreen(),
           ),
@@ -57,6 +67,18 @@ Future<void> main() async {
           GetPage(
             name: '/third',
             page: () => OneThirdScreen(),
+          ),
+          GetPage(
+            name: '/detail',
+            page: () => DetailsScreen(),
+          ),
+          GetPage(
+            name: '/adminDetail',
+            page: () => AdminDetailsScreen(),
+          ),
+          GetPage(
+            name: '/loginadmin',
+            page: () => LoginAdminAcreen(),
           ),
           GetPage(
             name: '/signin',

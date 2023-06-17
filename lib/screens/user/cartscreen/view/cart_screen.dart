@@ -63,114 +63,125 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            // Get.toNamed('/data',arguments: index);
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              children: [
-                                ClipRRect(
+                        itemBuilder: (context, index) =>
+                            GestureDetector(
+                              onTap: () {
+                                // Get.toNamed('/data',arguments: index);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(10),
-                                  child: SizedBox(
-                                    // height: 15.h,
-                                    width: 40.w,
-                                    child: Image.network(
-                                      "${cartList[index].image}",
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
                                 ),
-                                Padding(
-                                  padding:
+                                child: Row(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: SizedBox(
+                                        // height: 15.h,
+                                        width: 40.w,
+                                        child: Image.network(
+                                          "${cartList[index].image}",
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
                                       const EdgeInsets.only(left: 5, right: 5),
-                                  child: SizedBox(
-                                    width: 54.w,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
+                                      child: SizedBox(
+                                        width: 54.w,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "\n${cartList[index].name}",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14.sp),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          'Select Plant Size:Small',
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          'Select Planter:GroPot',
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          'Color:Ivory',
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
+                                            Text(
+                                              "\n${cartList[index].name}",
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.sp),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                              'Select Plant Size:Small',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade700),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                              'Select Planter:GroPot',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade700),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                              'Color:Ivory',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade700),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
                                             Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                               children: [
-                                                IconButton(
-                                                  onPressed: () {
-                                                    if (controller.i.value > 1) {
-                                                      controller.i.value -= 1;
-                                                      print(controller.i.value);
-                                                    }
-                                                  },
-                                                  icon: Icon(Icons.remove, size: 20),
+                                                Row(
+                                                  children: [
+                                                    IconButton(
+                                                      onPressed: () {
+                                                        if (controller.i.value >
+                                                            1) {
+                                                          controller.i.value -=
+                                                          1;
+                                                          print(controller.i
+                                                              .value);
+                                                        }
+                                                      },
+                                                      icon: Icon(Icons.remove,
+                                                          size: 20),
+                                                    ),
+                                                    Obx(() =>
+                                                        Text(
+                                                            '${controller.i
+                                                                .value}')),
+                                                    IconButton(
+                                                      onPressed: () {
+                                                        controller.i.value += 1;
+                                                        print(controller.i
+                                                            .value);
+                                                      },
+                                                      icon:
+                                                      Icon(Icons.add, size: 20),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Obx(() =>
-                                                    Text('${controller.i.value}')),
-                                                IconButton(
-                                                  onPressed: () {
-                                                    controller.i.value += 1;
-                                                    print(controller.i.value);
-                                                  },
-                                                  icon: Icon(Icons.add, size: 20),
+                                                Text(
+                                                  "₹${cartList[index].price}",
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color(0XFF519453),
+                                                      fontSize: 13.sp),
                                                 ),
                                               ],
                                             ),
-                                            Text(
-                                              "₹${cartList[index].price}",
-                                              style: TextStyle(
-                                                  color: const Color(0XFF519453),
-                                                  fontSize: 13.sp),
-                                            ),
                                           ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
                         itemCount: cartList.length,
                       ),
                     ),
@@ -201,7 +212,18 @@ class _CartScreenState extends State<CartScreen> {
                       height: 5.h,
                       width: 50.w,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          for (int i = 0; i < cartList.length; i++) {
+                            Map<String,dynamic> m1 = {
+                              "name": "${cartList[i].name}",
+                              "image": "${cartList[i].image}",
+                              "price": "${cartList[i].price}",
+                              "discription": "${cartList[i].discription}"
+                            };
+                            FbHelper.fbHelper.addtoBuy(m1);
+                            Get.toNamed('/order');
+                          }
+                        },
                         style: ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(
                             Color(0XFF149253),
