@@ -36,32 +36,28 @@ samples, guidance on mobile development, and a full API reference.
   ********************   **USER SIDE**   **************************
 <p>
 <p>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/541c42e3-54cd-41f9-a7f8-33eba59d9024"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/36d98b6e-9c14-4092-80db-c95f9f7a3dba"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/8bc2339b-8d8e-4c6b-8676-5831738f4ee2"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/7f405f0a-e44c-40de-88da-7f396a708305"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/7bf079d7-528b-4b4d-92ba-b2d7a6fcee29"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/69360e6a-70fb-4ed0-b466-c553705b7428"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/6c3190e3-507a-4c3c-9a86-1bbc3f84f248"width=22%,height=35%>
-<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/370eebeb-ffe3-496f-8b40-6fcbdda59379"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/75f68f49-248f-47df-b017-78254c63f1c1"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/915db459-afbe-4b91-9977-8d7f8e19bce3"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/16a6ceb6-eeda-46c7-ae01-e85bf38158bf"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/83340b27-67c6-4c0d-8123-cdb5863b424d"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/1e25edb9-acab-4af3-9970-82296287d8f1"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/af01e809-fa98-4e0c-bb0b-db1afcd270cc"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/e6ad31f6-6b88-4750-b27c-ccc1d1b43a06"width=22%,height=35%>
+<img src="https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/9ae2d1a3-0c34-4017-b618-6de17a67cd12"width=22%,height=35%>
 <p>
 
 
 
-
-
-https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/4e79ced9-19ca-4cb3-b055-1fa60b219229
-
+https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/68153a91-6e05-47d9-85b7-db019e7f98ee
 
 
 
-
-
-https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/5bf24082-d378-4cf9-bd48-f6ba20aa9700
+https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/4feb01f1-ecbd-4944-827e-2cf2116598e3
 
 
 
 
 
-https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/795e1dc1-f5da-4e05-ac5d-e30d8cad6364
+https://github.com/MangukiyaJanvi/firebase_app/assets/114645045/935df513-5a20-49de-b948-b34aed09a9c9
+
 
